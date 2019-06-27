@@ -10,6 +10,9 @@
 NLP - class2
 - src/pretrained_glove.py - explore GloVe
 - src/pretrained_word2vec.py - explore word2vec, using Gensim library. Wrapper for word2vec
+- src/bow_classifier  - text classification
+- src/markov.py - bigram, statistics
+
 
 ## downloads
 - https://dumps.wikimedia.org/enwiki/20190620/enwiki-20190620-pages-articles-multistream1.xml-p10p30302.bz2

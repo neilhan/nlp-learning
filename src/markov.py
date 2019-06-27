@@ -126,11 +126,12 @@ def get_bigram_probs(sentences, V, start_idx, end_idx, smoothing=1):
                 bigram_probs[sentence[i-1], sentence[i]] += 1
             # at final word
             # last -> current, current-> END.
-            if i == len(sentence) -1:
+            if i == len(sentence) - 1:
                 bigram_probs[sentence[i], end_idx] += 1
-        # normalize, / sum along the rows, to get the probabilities
-        bigram_probs /= bigram_probs.sum(axis=1, keepdims=True)
-        return bigram_probs
+    # normalize, / sum along the rows, to get the probabilities
+    bigram_probs /= bigram_probs.sum(axis=1, keepdims=True)
+    return bigram_probs
+
 
 def get_score_norm_log(sentence, bigram_probs, start_idx, end_idx):
     score = 0
@@ -141,15 +142,15 @@ def get_score_norm_log(sentence, bigram_probs, start_idx, end_idx):
         else:
             # middle-word
             score += np.log(bigram_probs[sentence[i-1], sentence[i]])
-        # END-word
-        score += np.log(bigram_probs[sentence[-1], end_idx])
+    # END-word
+    score += np.log(bigram_probs[sentence[-1], end_idx])
     return score / (len(sentence) + 1)
 
 def get_words_idx2word(sentence, idx2word):
     return ' '.join(idx2word[i] for i in sentence)
 
 def main():
-    sentences, word2idx = get_sentences_with_word2idx_limit_vocab(20000)
+    sentences, word2idx = get_sentences_with_word2idx_limit_vocab(10000)
     # sentences, word2idx = get_sentences_with_word2idx()
 
     V = len(word2idx)
